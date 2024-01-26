@@ -21,8 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Scaffold(
-          backgroundColor: Color(0xFF00258D),
-          // backgroundColor: Colors.black45,
+          backgroundColor: const Color(0xFF00258D),
           appBar: AppBar(
             title: const Text(
               "Vibing In the Floating Space",
@@ -66,23 +65,29 @@ class MyApp extends StatelessWidget {
                   width: 100,
                   height: 100,
                   child: SpaceFloatingWidget(
-                      //padding: const EdgeInsets.only(left: 40, top: 30),
+                      topOffsetAnimation: Offset(0.2, 0.5 + (index / 100)),
+                      leftOffsetAnimation:
+                          Offset(0.1 + (index / 2 / 100), 0.5 + (index / 100)),
+                      animationLeftDuration:
+                          Duration(milliseconds: 500 + (index * 100)),
+                      animationTopDuration:
+                          Duration(milliseconds: 1000 + (index * 100)),
                       widget: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      CustomPaint(
-                        painter: CustomRoundShape(
-                          80,
-                          gradientColors: const [
-                            Color(0xff4d4dff),
-                            Color(0xff400080),
-                          ],
-                        ),
-                      ),
-                      Icon(icons.elementAt(index),
-                          size: 50, color: Colors.white),
-                    ],
-                  )),
+                        alignment: Alignment.center,
+                        children: [
+                          CustomPaint(
+                            painter: CustomRoundShape(
+                              80,
+                              gradientColors: const [
+                                Color(0xff4d4dff),
+                                Color(0xff400080),
+                              ],
+                            ),
+                          ),
+                          Icon(icons.elementAt(index),
+                              size: 50, color: Colors.white),
+                        ],
+                      )),
                 ),
                 //const SizedBox(height: 8.0),
                 ClipRRect(
