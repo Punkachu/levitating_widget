@@ -2,10 +2,7 @@
 
 A Flutter Widget to make levitate any of your widget anywhere !🚀🌌
 
-# SnowingWidget
-Snowing Widget to animate backgrounds in Flutter
-
-![Snowing widget](screen_shots/mock_snow2.gif "story book snow widget showcase")
+![Snowing widget](screen_shots/floating_widgets.gif "Floating Widgets in the space !")
 
 # How to use it ?
 ```@dart
