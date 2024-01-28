@@ -47,6 +47,7 @@ class _LevitatingWidgetState extends State<LevitatingWidget>
   late final Random random = Random();
 
   void _initialize() {
+    /// Init durations
     final Duration _animationTopDuration = Duration(
         milliseconds:
             widget.animationTopDuration.inMilliseconds + random.nextInt(1000));
@@ -54,15 +55,17 @@ class _LevitatingWidgetState extends State<LevitatingWidget>
         milliseconds:
             widget.animationTopDuration.inMilliseconds + random.nextInt(1000));
 
+    /// Add some random values
     final double randomLeft = random.nextInt(100) / 100;
     final double randomTop = random.nextInt(100) / 100;
 
+    /// Init offset parameters
     final Offset leftOffsetAnimation = widget.leftOffsetAnimation ??
         Offset(.23 + randomLeft, .27 + randomLeft);
-
     final Offset topOffsetAnimation =
         widget.leftOffsetAnimation ?? Offset(.23 + randomTop, .27 + randomTop);
 
+    /// Handle Left animation with controller
     controllerLeft =
         AnimationController(vsync: this, duration: _animationTopDuration);
 
@@ -85,9 +88,10 @@ class _LevitatingWidgetState extends State<LevitatingWidget>
         }
       });
 
+    /// Handle Top animation values with controller
+
     controllerTop =
         AnimationController(vsync: this, duration: _animationTopDuration);
-
     animationTop =
         Tween<double>(begin: topOffsetAnimation.dx, end: topOffsetAnimation.dy)
             .animate(CurvedAnimation(
@@ -105,7 +109,10 @@ class _LevitatingWidgetState extends State<LevitatingWidget>
             }
           });
 
-    Timer(_animationLeftDuration, () {
+    /// Delay the animation of the left values to give a more asymmetric effect
+    /// WidgetsBinding.instance.addPostFrameCallback is here to make sure we start
+    /// animation after the build is done.
+    Timer(const Duration(milliseconds: 800), () {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
           controllerLeft.forward();
