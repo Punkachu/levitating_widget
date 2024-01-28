@@ -47,14 +47,12 @@ class _SpaceFloatingWidgetState extends State<SpaceFloatingWidget>
   late final Random random = Random();
 
   void _initialize() {
-    final Duration _animationTopDuration = widget.animationTopDuration ??
-        Duration(
-            milliseconds: widget.animationTopDuration.inMilliseconds +
-                random.nextInt(1000));
-    final Duration _animationLeftDuration = widget.animationLeftDuration ??
-        Duration(
-            milliseconds: widget.animationTopDuration.inMilliseconds +
-                random.nextInt(1000));
+    final Duration _animationTopDuration = Duration(
+        milliseconds:
+            widget.animationTopDuration.inMilliseconds + random.nextInt(1000));
+    final Duration _animationLeftDuration = Duration(
+        milliseconds:
+            widget.animationTopDuration.inMilliseconds + random.nextInt(1000));
 
     final double randomLeft = random.nextInt(100) / 100;
     final double randomTop = random.nextInt(100) / 100;
