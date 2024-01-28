@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'space_floating_widget.dart';
+import 'levitating_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
                 SizedBox(
                   width: 100,
                   height: 100,
-                  child: SpaceFloatingWidget(
+                  child: LevitatingWidget(
                       topOffsetAnimation: Offset(0.2, 0.5 + (index / 100)),
                       leftOffsetAnimation:
                           Offset(0.1 + (index / 2 / 100), 0.5 + (index / 100)),

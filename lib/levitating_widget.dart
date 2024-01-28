@@ -3,8 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class SpaceFloatingWidget extends StatefulWidget {
-  const SpaceFloatingWidget({
+class LevitatingWidget extends StatefulWidget {
+  const LevitatingWidget({
     required this.widget,
     this.leftOffsetAnimation = const Offset(.23, .27),
     this.topOffsetAnimation = const Offset(.21, .28),
@@ -33,10 +33,10 @@ class SpaceFloatingWidget extends StatefulWidget {
   final EdgeInsetsGeometry? padding;
 
   @override
-  State<SpaceFloatingWidget> createState() => _SpaceFloatingWidgetState();
+  State<LevitatingWidget> createState() => _LevitatingWidgetState();
 }
 
-class _SpaceFloatingWidgetState extends State<SpaceFloatingWidget>
+class _LevitatingWidgetState extends State<LevitatingWidget>
     with TickerProviderStateMixin {
   late final AnimationController controllerLeft;
   late final AnimationController controllerTop;
@@ -136,35 +136,33 @@ class _SpaceFloatingWidgetState extends State<SpaceFloatingWidget>
 
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      key: const Key("AnimatedWidget"),
-      child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          double maxWidth = constraints.maxWidth;
-          double maxHeight = constraints.maxHeight;
+    return LayoutBuilder(
+      key: const Key("LevitatingAnimatedWidget"),
+      builder: (BuildContext context, BoxConstraints constraints) {
+        double maxWidth = constraints.maxWidth;
+        double maxHeight = constraints.maxHeight;
 
-          return Container(
-            height: maxHeight,
-            width: maxWidth,
-            padding: widget.padding ??
-                EdgeInsets.only(
-                  top: (maxHeight / 2) * 0.15,
-                  left: (maxWidth / 2) * 0.2,
-                ),
+        return Container(
+          height: maxHeight,
+          width: maxWidth,
+          padding: widget.padding ??
+              EdgeInsets.only(
+                top: (maxHeight / 2) * 0.15,
+                left: (maxWidth / 2) * 0.2,
+              ),
+          alignment: Alignment.center,
+          child: Stack(
             alignment: Alignment.center,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Positioned(
-                  top: ((maxHeight / 2)) * animationTop.value,
-                  left: (maxWidth / 2) * animationLeft.value,
-                  child: widget.widget,
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+            children: [
+              Positioned(
+                top: ((maxHeight / 2)) * animationTop.value,
+                left: (maxWidth / 2) * animationLeft.value,
+                child: widget.widget,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
